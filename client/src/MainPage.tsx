@@ -5,7 +5,7 @@ import * as Tone from 'tone';
 import { Music32 } from '@carbon/icons-react';
 
 // project imports
-import { InstrumentContainer } from './Instruments';
+import { InstrumentContainer } from './Instrument2';
 import { AppState } from './State';
 import { DispatchAction } from './Reducer';
 import { SideNav } from './SideNav';

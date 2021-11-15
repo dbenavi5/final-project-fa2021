@@ -12,7 +12,7 @@ import {
 // project imports
 import { DispatchAction } from './Reducer';
 import { AppState } from './State';
-import { Instrument } from './Instruments';
+import { Instrument } from './Instrument2';
 import { Visualizer } from './Visualizers';
 
 

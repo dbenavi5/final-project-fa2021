@@ -8,29 +8,30 @@ export class Particle {
     color: number[];
 
     constructor(p5: P5) {
-        this.position = Vector.random2D().mult(180);               // <- size of the circle
-        this.velocity = Vector.random2D().mult(0); //p5.createVector(p5.random(), p5.random()); // <- empty vector
-        this.acceleration = this.position.copy().mult(p5.random(0.0001,0.00001)); // <- must be smaller than this.position
-        this.pSize = p5.random(4, 6);     // <- size of particles
-
-        this.color = [p5.random(200, 255), p5.random(200, 255), p5.random(200, 255)];
+        this.position = Vector.random2D().mult(140);                                    // <- size of the circle
+        this.velocity = Vector.random2D().mult(0);                                      // <- empty vector
+        this.acceleration = this.position.copy().mult(p5.random(0.0001, 0.00001));      // <- must be smaller than this.position
+        this.pSize = p5.random(4, 6);                                                   // <- size of particles
+        this.color = [p5.random(200, 255), p5.random(200, 255), p5.random(200, 255)];   // <- random color for particles
     }
 
-    update() {
+    update(condition: boolean) {
         this.velocity.add(this.acceleration);       // <- add acceleration to velocity
         this.position.add(this.velocity);           // <- add velocity to position
-        // if (condition) {
-        //     this.position.add(this.velocity);
-        //     this.position.add(this.velocity);
-        //     this.position.add(this.velocity);
-        // }
+        if (condition) {
+            this.position.add(this.velocity);
+            this.position.add(this.velocity);
+            this.position.add(this.velocity);
+        }
     }
 
     edges(p5: P5) {
-        if (this.position.x < -p5.width / 2 || this.position.x > p5.width / 2 || this.position.y < -p5.height / 2 || this.position.y > p5.height / 2) {
+        if (this.position.x < -p5.width / 2 || this.position.x > p5.width / 2 ||
+            this.position.y < -p5.height / 2 || this.position.y > p5.height / 2) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     show(p5: P5) {
