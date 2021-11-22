@@ -16,17 +16,13 @@ export const createParticle = (p5: P5, analyzer: Tone.Analyser): void => {
     for (let p = particles.length - 1; p >= 0; p--) {
         const amp = values[p];
         if (!particles[p].edges(p5)) {
-            particles[p].update(amp > 0.1);
+            particles[p].update(amp > 1);
             particles[p].show(p5);
         } else {
             particles.splice(p, 1);
         }
     }
 };
-
-// const detectBeat = (beat: Tone.FFT) => {
-    
-// }
 
 export const CircleWaveformVisualizer = new Visualizer(
     'Circle Waveform',

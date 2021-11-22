@@ -26,20 +26,20 @@ interface DrumMembraneSoundProps {
   index: number; // octave + index together give a location for the piano key
 }
 
-interface DrumNoiseSoundProps {
-  name: string    // instrument name
-  note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
-  duration?: string;  // time
-  noise?: Tone.NoiseSynth; // snare sound
-  octave: number;
-  index: number; // octave + index together give a location for the piano key
-}
-
 interface DrumMetalSoundProps {
   name: string    // instrument name
   note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
   duration?: string;  // time
   metal?: Tone.MetalSynth; // hi-hat, cymbal
+  octave: number;
+  index: number; // octave + index together give a location for the piano key
+}
+
+interface DrumNoiseSoundProps {
+  name: string    // instrument name
+  note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
+  duration?: string;  // time
+  noise?: Tone.NoiseSynth; // snare sound
   octave: number;
   index: number; // octave + index together give a location for the piano key
 }
@@ -53,7 +53,7 @@ export function DrumMembraneSound({
   return (
     <div
       onMouseDown={() => membrane?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?  <- handling an event
-      onMouseUp={() => membrane?.triggerRelease('+1')} // Question: what is `onMouseUp`?  <- duration of each note
+      onMouseUp={() => membrane?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?  <- duration of each note
       className={styles.membrane}
       style={{ top: 0, left: `${index * 2}rem` }}
     >{`${name}`}</div>
@@ -69,7 +69,7 @@ export function DrumMetalSound({
   return (
     <div
       onMouseDown={() => metal?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?  <- handling an event
-      onMouseUp={() => metal?.triggerRelease('+0.75')} // Question: what is `onMouseUp`?  <- duration of each note
+      onMouseUp={() => metal?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?  <- duration of each note
       className={styles.metal}
       style={{ top: 180, left: `${index * 2}rem` }}
     >{`${name}`}</div>
@@ -77,7 +77,7 @@ export function DrumMetalSound({
 }
 
 export function DrumNoiseSound({
-  note,
+  // note,
   name,
   noise,
   index,
@@ -85,38 +85,38 @@ export function DrumNoiseSound({
   return (
     <div
       onMouseDown={() => noise?.triggerAttack()} // Question: what is `onMouseDown`?  <- handling an event
-      onMouseUp={() => noise?.triggerRelease('+0.75')} // Question: what is `onMouseUp`?  <- duration of each note
+      onMouseUp={() => noise?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?  <- duration of each note
       className={styles.noise}
       style={{ top: 360, left: `${index * 2}rem` }}
     >{`${name}`}</div>
   );
 }
 
-function Drum({ membrane, metal, noise, setNoise }: InstrumentProps): JSX.Element {
+function Drum({ membrane, metal, noise }: InstrumentProps): JSX.Element {
   const membraneKeys = List([
     //A,B,C,D,E,F,G  ==> minor: Ab,Bb,Cb,Db,Eb,Fb,Gb
     { memNote: 'C', idx: 0, name: 'Kick' },
-    { memNote: 'A', idx: 8, name: 'Tom' },
-    { memNote: 'B', idx: 16, name: 'Bass' }
+    { memNote: 'F', idx: 8, name: 'Tom' },
+    { memNote: 'G', idx: 16, name: 'Bass' }
   ]);
   const metalKeys = List([
-    { metalNote: 'C0', idx: 0, name: 'Hi-Hat' },
-    { metalNote: 'F0', idx: 8, name: 'Open-Hat' },
-    { metalNote: 'B0', idx: 16, name: 'Closed-Hat' }
+    { metalNote: 'C', idx: 0, name: 'Hi-Hat' },
+    { metalNote: 'F', idx: 8, name: 'Open-Hat' },
+    { metalNote: 'B', idx: 16, name: 'Closed-Hat' }
   ]);
   const noiseType = List([
-    { noiseType: '', idx: 0, name: 'Snare' }
+    { noiseType: '8n', idx: 0, name: 'Snare' }
   ])
 
-  const setNoiseType = (newType: Tone.NoiseType) => {
-    setNoise(oldNoise => {
-      oldNoise.disconnect();
+  // const setNoiseType = (newType: Tone.NoiseType) => {
+  //   setNoise(oldNoise => {
+  //     oldNoise.disconnect();
 
-      return new Tone.NoiseSynth({
-        noise: { type: newType } as Tone.NoiseOptions
-      }).toDestination();
-    })
-  }
+  //     return new Tone.NoiseSynth({
+  //       noise: { type: newType } as Tone.NoiseOptions
+  //     }).toDestination();
+  //   })
+  // }
 
   return (
     <div className="pv4">

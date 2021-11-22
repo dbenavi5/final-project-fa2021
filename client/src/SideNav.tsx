@@ -1,7 +1,7 @@
 // 3rd party library imports
 import classNames from 'classnames';
 import { List } from 'immutable';
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
   RadioButton20,
@@ -14,6 +14,7 @@ import { DispatchAction } from './Reducer';
 import { AppState } from './State';
 import { Instrument } from './Instrument2';
 import { Visualizer } from './Visualizers';
+import { AppBar, TextField } from '@material-ui/core';
 
 
 /** ------------------------------------------------------------------------ **
@@ -104,20 +105,40 @@ function Visualizers({ state }: SideNavProps): JSX.Element {
 
 function Songs({ state, dispatch }: SideNavProps): JSX.Element {
   const songs: List<any> = state.get('songs', List());
+  const [searchSong, setSearchSong] = useState('');
+
+  const handleChange = (event: any) => {
+    setSearchSong(event.target.value)
+  }
+
+  const results = !searchSong
+    ? songs
+    : songs.filter((song) =>
+      song.toString().toLowerCase().includes(searchSong.toString().toLowerCase()));
+
   return (
     <Section title="Playlist">
-      {songs.map(song => (
-        <div
-          key={song.get('id')}
-          className="f6 pointer underline flex items-center no-underline i dim"
-          onClick={() =>
-            dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
-          }
-        >
-          <Music20 className="mr1" />
-          {song.get('songTitle')}
-        </div>
-      ))}
+      <AppBar position="static" color="transparent" elevation={0}>
+        <TextField
+          type="text"
+          placeholder='Search'
+          value={searchSong}
+          onChange={handleChange}
+        />
+        {results.map((song) => (
+          <div
+            key={song.get('id')}
+            className="f6 pointer underline flex items-center no-underline i dim"
+            onClick={() =>
+              dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
+            }
+          >
+            <Music20 className="mr1" />
+            {song.get('songTitle')}
+          </div>
+        ))}
+
+      </AppBar>
     </Section>
   );
 }

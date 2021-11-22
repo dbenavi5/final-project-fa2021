@@ -66,7 +66,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
     const [membrane, setMembrane] = useState(
         new Tone.MembraneSynth({
             pitchDecay: 0.05,
-            octaves: 10,
+            octaves: 4,
             oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
         }).toDestination(),
     );
@@ -98,7 +98,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
 
     // useEffect for playlist song
     useEffect(() => {
-        if (notes && synth) {
+        if (notes && synth && membrane) {
             let eachNote = notes.split(' ');
             let noteObjs = eachNote.map((note: string, idx: number) => ({
                 idx,
@@ -110,6 +110,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
             new Tone.Part((time, value) => {
                 // the value is an object which contains both the note and the velocity
                 synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
+                
                 if (value.idx === eachNote.length - 1) {
                     dispatch(new DispatchAction('STOP_SONG'));
                 }
@@ -123,7 +124,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
         }
 
         return () => { };
-    }, [notes, synth, dispatch]);
+    }, [notes, synth, membrane, dispatch]);
 
     return (
         <div>
