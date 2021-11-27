@@ -1,0 +1,38 @@
+.membrane {
+    position: absolute;
+    margin: 2rem;
+    z-index: 0;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 6rem;
+    border: 15px solid #aaa9ad;
+    text-align: center;
+    background: #f4f0e5;
+    color:black;
+}
+
+.metal {
+    position: absolute;
+    margin: 2rem;
+    z-index: 0;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 6rem;
+    border: 1px solid #f4f0e5;
+    text-align: center;
+    color: #fff;
+    background: radial-gradient(circle, rgba(255, 190, 9, 1) 0%, rgba(155, 115, 5, 1) 100%, rgba(155, 115, 5, 1) 100%);
+}
+
+.noise {
+    position: absolute;
+    margin: 2rem;
+    z-index: 0;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 6rem;
+    border: 10px solid #aaa9ad;
+    text-align: center;
+    background: #f4f0e5;
+    color: black;
+}

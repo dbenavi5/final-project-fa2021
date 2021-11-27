@@ -41,7 +41,7 @@ function TopNav({ name }: { name: string }) {
                 'w-100 h3 bb b--light-gray flex justify-between items-center ph4'
             }
         >
-            <div>{name}</div>
+            <div className={'fw7'} style={{fontSize:'30px'}}>{name}</div>
         </div>
     );
 }
@@ -66,18 +66,8 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
     const [membrane, setMembrane] = useState(
         new Tone.MembraneSynth({
             pitchDecay: 0.05,
-            octaves: 4,
+            octaves: 5,
             oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
-        }).toDestination(),
-    );
-    const [noise, setNoise] = useState(
-        new Tone.NoiseSynth({
-            noise: { type: 'white' },    // sound changes from here
-            envelope: {
-                attack: 0.001,
-                decay: 0.2,
-                sustain: 0
-            }
         }).toDestination(),
     );
     const [metal, setMetal] = useState(
@@ -94,11 +84,22 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
         }).toDestination(),
     );
 
+    const [noise, setNoise] = useState(
+        new Tone.NoiseSynth({
+            noise: { type: 'white' },    // sound changes from here
+            envelope: {
+                attack: 0.001,
+                decay: 0.2,
+                sustain: 0
+            }
+        }).toDestination(),
+    );
+
     const notes = state.get('notes');
 
     // useEffect for playlist song
     useEffect(() => {
-        if (notes && synth && membrane) {
+        if (notes && synth) {
             let eachNote = notes.split(' ');
             let noteObjs = eachNote.map((note: string, idx: number) => ({
                 idx,
@@ -111,6 +112,8 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
                 // the value is an object which contains both the note and the velocity
                 synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
                 
+
+                // I think this condition allows the user replay the song.
                 if (value.idx === eachNote.length - 1) {
                     dispatch(new DispatchAction('STOP_SONG'));
                 }
@@ -124,13 +127,13 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
         }
 
         return () => { };
-    }, [notes, synth, membrane, dispatch]);
+    }, [notes, synth, dispatch]);
 
     return (
         <div>
             <TopNav name={instrument.name} />
             <div
-                className={'bg-white absolute right-0 left-0'}
+                className={'absolute right-0 left-0'}
                 style={{ top: '4rem' }}
             >
                 <InstrumentComponent

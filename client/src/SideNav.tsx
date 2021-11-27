@@ -14,8 +14,8 @@ import { DispatchAction } from './Reducer';
 import { AppState } from './State';
 import { Instrument } from './Instrument2';
 import { Visualizer } from './Visualizers';
-import { AppBar, TextField } from '@material-ui/core';
-
+import { Input } from '@material-ui/core';
+import useStyles from "./styles/sideNave";
 
 /** ------------------------------------------------------------------------ **
  * All the components in the side navigation.
@@ -28,9 +28,9 @@ interface SideNavProps {
 
 const Section: React.FC<{ title: string }> = ({ title, children }) => {
   return (
-    <div className="flex flex-column h-25 bb b--light-gray pa3">
-      <div className="fw7 mb2">{title} </div>
-      <div className="flex-auto overflow-scroll">{children}</div>
+    <div className="flex flex-column h-25 bb b--light-gray pa3 white">
+      <div style={{fontSize: '30px'}} className="fw7 mb2 blue">{title}</div>
+      <div className="flex-auto">{children}</div>
     </div>
   );
 };
@@ -46,7 +46,7 @@ function RadioButton({ to, text, active, onClick }: RadioButtonProps): JSX.Eleme
   return (
     <Link to={to} className="no-underline">
       <div
-        className={classNames('f6 flex items-center black', { fw7: active })}
+        className={classNames('f6 flex items-center white', { fw7: active })}
         onClick={onClick}
       >
         {active ? (
@@ -54,7 +54,7 @@ function RadioButton({ to, text, active, onClick }: RadioButtonProps): JSX.Eleme
         ) : (
           <RadioButton20 className="mr1" />
         )}
-        <div className="dim">{text}</div>
+        <div style={{fontSize: '25px'}} className="dim">{text}</div>
       </div>
     </Link>
   );
@@ -106,6 +106,7 @@ function Visualizers({ state }: SideNavProps): JSX.Element {
 function Songs({ state, dispatch }: SideNavProps): JSX.Element {
   const songs: List<any> = state.get('songs', List());
   const [searchSong, setSearchSong] = useState('');
+  const classes = useStyles();
 
   const handleChange = (event: any) => {
     setSearchSong(event.target.value)
@@ -118,36 +119,39 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
 
   return (
     <Section title="Playlist">
-      <AppBar position="static" color="transparent" elevation={0}>
-        <TextField
-          type="text"
-          placeholder='Search'
-          value={searchSong}
-          onChange={handleChange}
-        />
-        {results.map((song) => (
-          <div
-            key={song.get('id')}
-            className="f6 pointer underline flex items-center no-underline i dim"
-            onClick={() =>
-              dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
-            }
-          >
-            <Music20 className="mr1" />
-            {song.get('songTitle')}
-          </div>
-        ))}
-
-      </AppBar>
+      <Input
+        type="text"
+        style={{fontSize: '25px'}}
+        className={classes.inputField}
+        placeholder='Search'
+        value={searchSong}
+        onChange={handleChange}
+      />
+      {results.map((song) => (
+        <div
+          key={song.get('id')}
+          style={{fontSize: '25px'}}
+          className="f6 pointer underline flex items-center no-underline i dim white"
+          onClick={() =>
+            dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
+          }
+        >
+          <Music20 className="mr1" />
+          {song.get('songTitle')}
+        </div>
+      ))}
     </Section>
   );
 }
 
 export function SideNav({ state, dispatch }: SideNavProps): JSX.Element {
   return (
-    <div className="absolute top-0 left-0 bottom-0 w5 z-1 shadow-1 bg-white flex flex-column">
-      <div className="h3 fw7 f5 flex items-center pl3 bb b--light-gray">
-        Nameless App
+    <div
+      className="absolute top-0 left-0 bottom-0 w5 z-1 shadow-1 bg-black flex flex-column">
+      <div
+        style={{fontSize: '35px'}}
+        className="h3 fw7 flex items-center pl3 bb b--light-gray white">
+        App
       </div>
       <div className="flex-auto">
         <Instruments state={state} dispatch={dispatch} />

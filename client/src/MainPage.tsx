@@ -61,7 +61,7 @@ function InstrumentAndVisualizer({ state, dispatch }: PanelProps): JSX.Element {
 
   return (
     <div
-      className="absolute right-0 bottom-0 top-0 flex flex-column"
+      className="absolute right-0 bottom-0 top-0 flex flex-column white"
       style={{ left: '16rem' }}
     >
       <InstrumentPanel state={state} dispatch={dispatch} />
@@ -73,17 +73,17 @@ function InstrumentAndVisualizer({ state, dispatch }: PanelProps): JSX.Element {
 function ShowWelcome(): JSX.Element {
   return (
     <div
-      className="absolute right-0 bottom-0 top-0 flex flex-column items-center justify-center"
+      className="absolute right-0 bottom-0 top-0 flex flex-column items-center justify-center white"
       style={{ left: '16rem' }}
     >
-      <div className="mw6 lh-copy mb4">
+      <div className="mw6 lh-copy mb4 white">
         <Music32 />
-        <div className="f3 fw7 mb2">Welcome to the case study.</div>
-        <div className="f4 mb3">
+        <div className="f3 fw7 mb2 white">Welcome to the case study.</div>
+        <div className="f4 mb3 white">
           Select an instrument and a visualizer on the left to serve some fresh
           beats.
         </div>
-        <div className="f5">The UI is yours to design. Express yourself.</div>
+        <div className="f5 white">The UI is yours to design. Express yourself.</div>
       </div>
     </div>
   );
@@ -108,7 +108,7 @@ export function MainPage({ state, dispatch }: PanelProps): JSX.Element {
 
   return (
     <div
-      className="fixed top-0 left-0 h-100 w-100 bg-white"
+      className="fixed top-0 left-0 h-100 w-100 bg-black"
       onClick={() => Tone.start()}
     >
       <SideNav state={state} dispatch={dispatch} />
