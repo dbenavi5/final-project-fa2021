@@ -7,7 +7,7 @@ import { Visualizer } from '../Visualizers';
 
 
 export const KaleidoscopeVisualizer = new Visualizer(
-  'Kaleidoscope',
+  'WilliamYu5',
   (p5: P5, analyzer: Tone.Analyser) => {
     const width = window.innerWidth;
     const height = window.innerHeight / 2;

@@ -173,4 +173,4 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
   );
 }
 
-export const TestInstrument = new Instrument('Test', Piano);
+export const TestInstrument = new Instrument('WilliamYu5', Piano);
