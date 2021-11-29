@@ -15,7 +15,6 @@ import { AppState } from './State';
 import { Instrument } from './Instrument2';
 import { Visualizer } from './Visualizers';
 import { Input } from '@material-ui/core';
-import useStyles from "./styles/sideNave";
 
 /** ------------------------------------------------------------------------ **
  * All the components in the side navigation.
@@ -29,7 +28,7 @@ interface SideNavProps {
 const Section: React.FC<{ title: string }> = ({ title, children }) => {
   return (
     <div className="flex flex-column h-25 bb b--light-gray pa3 white">
-      <div style={{fontSize: '30px'}} className="fw7 mb2 blue">{title}</div>
+      <div style={{ fontSize: '30px' }} className="fw7 mb2 blue">{title}</div>
       <div className="flex-auto">{children}</div>
     </div>
   );
@@ -54,7 +53,7 @@ function RadioButton({ to, text, active, onClick }: RadioButtonProps): JSX.Eleme
         ) : (
           <RadioButton20 className="mr1" />
         )}
-        <div style={{fontSize: '25px'}} className="dim">{text}</div>
+        <div style={{ fontSize: '25px' }} className="dim">{text}</div>
       </div>
     </Link>
   );
@@ -106,7 +105,6 @@ function Visualizers({ state }: SideNavProps): JSX.Element {
 function Songs({ state, dispatch }: SideNavProps): JSX.Element {
   const songs: List<any> = state.get('songs', List());
   const [searchSong, setSearchSong] = useState('');
-  const classes = useStyles();
 
   const handleChange = (event: any) => {
     setSearchSong(event.target.value)
@@ -121,16 +119,19 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
     <Section title="Playlist">
       <Input
         type="text"
-        style={{fontSize: '25px'}}
-        className={classes.inputField}
-        placeholder='Search'
+        style={{
+          fontSize: '25px',
+          padding: "15px",
+          backgroundColor: "white",
+        }}
+        placeholder='Search...'
         value={searchSong}
         onChange={handleChange}
       />
       {results.map((song) => (
         <div
           key={song.get('id')}
-          style={{fontSize: '25px'}}
+          style={{ fontSize: '25px' }}
           className="f6 pointer underline flex items-center no-underline i dim white"
           onClick={() =>
             dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
@@ -147,10 +148,10 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
 export function SideNav({ state, dispatch }: SideNavProps): JSX.Element {
   return (
     <div
-      className="absolute top-0 left-0 bottom-0 w5 z-1 shadow-1 bg-black flex flex-column">
+      className="absolute top-0 left-0 bottom-0 w16 z-1 bg-black flex flex-column">
       <div
-        style={{fontSize: '35px'}}
-        className="h3 fw7 flex items-center pl3 bb b--light-gray white">
+        style={{ fontSize: '35px' }}
+        className="h4 fw7 flex items-center pl3 bb b--light-gray white">
         App
       </div>
       <div className="flex-auto">

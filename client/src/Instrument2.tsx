@@ -11,11 +11,10 @@ import { AppState } from './State';
  ** ------------------------------------------------------------------------ */
 
 export interface InstrumentProps {
-    name: string;
     synth: Tone.Synth;
     membrane: Tone.MembraneSynth;  // <- gives kick sound
-    noise: Tone.NoiseSynth         // <- gives snare sound
-    metal: Tone.MetalSynth         // <- gives hi-hat sound
+    noise: Tone.NoiseSynth;         // <- gives snare sound
+    metal: Tone.MetalSynth;         // <- gives hi-hat sound
     state: AppState;
     dispatch: React.Dispatch<DispatchAction>;
     setSynth: (f: (oldSynth: Tone.Synth) => Tone.Synth) => void;
@@ -38,10 +37,10 @@ function TopNav({ name }: { name: string }) {
     return (
         <div
             className={
-                'w-100 h3 bb b--light-gray flex justify-between items-center ph4'
+                'w-100 h4 bb b--light-gray flex justify-between items-center ph4'
             }
         >
-            <div className={'fw7'} style={{fontSize:'30px'}}>{name}</div>
+            <div className={'fw7'} style={{ fontSize: '30px' }}>{name}</div>
         </div>
     );
 }
@@ -66,7 +65,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
     const [membrane, setMembrane] = useState(
         new Tone.MembraneSynth({
             pitchDecay: 0.05,
-            octaves: 5,
+            octaves: 3,
             oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
         }).toDestination(),
     );
@@ -95,61 +94,60 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
         }).toDestination(),
     );
 
-    const notes = state.get('notes');
+const notes = state.get('notes');
 
-    // useEffect for playlist song
-    useEffect(() => {
-        if (notes && synth) {
-            let eachNote = notes.split(' ');
-            let noteObjs = eachNote.map((note: string, idx: number) => ({
-                idx,
-                time: `+${idx / 4}`,
-                note,
-                velocity: 1,
-            }));
+// useEffect for playlist song
+useEffect(() => {
+    if (notes && synth) {
+        let eachNote = notes.split(' ');
+        let noteObjs = eachNote.map((note: string, idx: number) => ({
+            idx,
+            time: `+${idx / 4}`,
+            note,
+            velocity: 1,
+        }));
 
-            new Tone.Part((time, value) => {
-                // the value is an object which contains both the note and the velocity
-                synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
-                
+        new Tone.Part((time, value) => {
+            // the value is an object which contains both the note and the velocity
+            synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
 
-                // I think this condition allows the user replay the song.
-                if (value.idx === eachNote.length - 1) {
-                    dispatch(new DispatchAction('STOP_SONG'));
-                }
-            }, noteObjs).start(0);
 
-            Tone.Transport.start();
+            // I think this condition allows the user replay the song.
+            if (value.idx === eachNote.length - 1) {
+                dispatch(new DispatchAction('STOP_SONG'));
+            }
+        }, noteObjs).start(0);
 
-            return () => {
-                Tone.Transport.cancel();
-            };
-        }
+        Tone.Transport.start();
 
-        return () => { };
-    }, [notes, synth, dispatch]);
+        return () => {
+            Tone.Transport.cancel();
+        };
+    }
 
-    return (
-        <div>
-            <TopNav name={instrument.name} />
-            <div
-                className={'absolute right-0 left-0'}
-                style={{ top: '4rem' }}
-            >
-                <InstrumentComponent
-                    name={instrument.name}
-                    state={state}
-                    dispatch={dispatch}
-                    synth={synth}
-                    membrane={membrane}
-                    noise={noise}
-                    metal={metal}
-                    setSynth={setSynth}
-                    setMembrane={setMembrane}
-                    setNoise={setNoise}
-                    setMetal={setMetal}
-                />
-            </div>
+    return () => { };
+}, [notes, synth, dispatch]);
+
+return (
+    <div>
+        <TopNav name={instrument.name} />
+        <div
+            className={'absolute right-0 left-0'}
+            style={{ top: '4rem' }}
+        >
+            <InstrumentComponent
+                state={state}
+                dispatch={dispatch}
+                synth={synth}
+                membrane={membrane}
+                noise={noise}
+                metal={metal}
+                setSynth={setSynth}
+                setMembrane={setMembrane}
+                setNoise={setNoise}
+                setMetal={setMetal}
+            />
         </div>
-    );
+    </div>
+);
 };

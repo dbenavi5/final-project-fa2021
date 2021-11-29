@@ -3,9 +3,9 @@ import { List, Map } from 'immutable';
 
 // project dependencies
 import { PianoInstrument } from './instruments/Piano';
-import { DrumInstrument } from './instruments/dbenavi5_instrument';
+import { DrumInstrument } from './instruments/dbenavi5_instrument_2';
 import { WaveformVisualizer } from './visualizers/Waveform';
-import { CircleWaveformVisualizer } from './visualizers/dbenavi5_visualizer';
+import { CircleWaveformVisualizer } from './visualizers/dbenavi5_visualizer_2';
 
 /** ------------------------------------------------------------------------ **
  * The entire application state is stored in AppState.
