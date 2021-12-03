@@ -1,7 +1,6 @@
 // 3rd party library imports
 import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
-import { FMSynth } from 'tone';
 // project imports
 import { DispatchAction } from './Reducer';
 import { AppState } from './State';

@@ -2,7 +2,6 @@
 import * as Tone from 'tone';
 import { List, Range } from 'immutable';
 import './style/raymond-git_Instrument.css';
-import classNames from 'classnames';
 // project imports
 import { Instrument, InstrumentProps } from '../Instruments2';
 
