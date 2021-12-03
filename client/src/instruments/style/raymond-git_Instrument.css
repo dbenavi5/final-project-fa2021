@@ -1,0 +1,138 @@
+.guitar {
+    top: 0px;
+    width: 100%;
+    display: flex;
+    height: 300px;
+    position: absolute;
+    background: #be975b;
+    flex-direction: column;
+}
+
+.strings {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.strings:before {
+    content: '';
+    top: 18px;
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    animation: RGB 5s infinite;
+    box-shadow: 76px 3px 10px #806233;
+    background: linear-gradient(#eee, #999);
+}
+
+.note {
+    flex: 1;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    border-right: 10px solid;
+    border-image: linear-gradient(to lef, #777, #bbb, #777) 1 100%;
+}
+
+.note:first-child {
+    flex-grow: 0;
+    flex-shrink: 0;
+    min-width: 76px;
+    border-right: 12px solid;
+    background: lightskyblue;
+    animation: RGB 5s infinite;
+    border-image: linear-gradient(to left, #fff, #bbb) 1 100%;
+}
+
+@keyframes RGB {
+    0% {
+      background: red;
+    }
+    20% {
+      background: green;
+    }
+    40% {
+      background: yellow;
+    }
+    60% {
+      background: blue;
+    }
+    80% {
+      background: orange;
+    }
+    100% {
+      background: red;
+    }
+}
+  
+  @-webkit-keyframes RGB{
+    0% {
+      background: red;
+    }
+    20% {
+      background: green;
+    }
+    40% {
+      background: yellow;
+    }
+    60% {
+      background: blue;
+    }
+    80% {
+      background: orange;
+    }
+    100% {
+      background: red;
+    }
+  }
+
+.note:before {
+    opacity: 0;
+    width: 33px;
+    height: 33px;
+    color: #eee;
+    line-height: 33px;
+    border-radius: 50%;
+    text-align: center;
+    background: teal;
+}
+
+.single-note:after {
+    content: '';
+    top: 150px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    background: #806233;
+    transform: translate(0, -50%);
+}
+
+.double-note:before {
+    content: '';
+    top: 78px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    background: #806233;
+    transform: translate(-140%, 50%);
+}
+
+.double-note:after {
+    content: '';
+    top: 179px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    background: #806233;
+    transform: translate(-140%, 50%);
+}
+
+.pt4 {
+    top: 156%;
+    position: absolute;
+}

@@ -5,7 +5,7 @@ import * as Tone from 'tone';
 import { Music32 } from '@carbon/icons-react';
 
 // project imports
-import { InstrumentContainer } from './Instruments';
+import { InstrumentContainer } from './Instrument2';
 import { AppState } from './State';
 import { DispatchAction } from './Reducer';
 import { SideNav } from './SideNav';
@@ -46,7 +46,7 @@ function VisualizerPanel({ state }: PanelProps): JSX.Element {
   const visualizer = state.get('visualizer');
 
   return (
-    <div>
+    <div className='z-9999'>
       {visualizer && (
         <VisualizerContainer key={visualizer.name} visualizer={visualizer} />
       )}
@@ -61,8 +61,7 @@ function InstrumentAndVisualizer({ state, dispatch }: PanelProps): JSX.Element {
 
   return (
     <div
-      className="absolute right-0 bottom-0 top-0 flex flex-column"
-      style={{ left: '16rem' }}
+      className="absolute left-16 right-0 bottom-0 top-0 flex flex-column white"
     >
       <InstrumentPanel state={state} dispatch={dispatch} />
       <VisualizerPanel state={state} dispatch={dispatch} />
@@ -73,17 +72,16 @@ function InstrumentAndVisualizer({ state, dispatch }: PanelProps): JSX.Element {
 function ShowWelcome(): JSX.Element {
   return (
     <div
-      className="absolute right-0 bottom-0 top-0 flex flex-column items-center justify-center"
-      style={{ left: '16rem' }}
+      className="absolute right-0 left-0 bottom-0 top-0 flex flex-column items-center justify-center white"
     >
-      <div className="mw6 lh-copy mb4">
+      <div className="mw6 lh-copy mb4 white">
         <Music32 />
-        <div className="f3 fw7 mb2">Welcome to the case study.</div>
-        <div className="f4 mb3">
+        <div className="f3 fw7 mb2 white">Welcome to the case study.</div>
+        <div className="f4 mb3 white">
           Select an instrument and a visualizer on the left to serve some fresh
           beats.
         </div>
-        <div className="f5">The UI is yours to design. Express yourself.</div>
+        <div className="f5 white">The UI is yours to design. Express yourself.</div>
       </div>
     </div>
   );
@@ -108,7 +106,7 @@ export function MainPage({ state, dispatch }: PanelProps): JSX.Element {
 
   return (
     <div
-      className="fixed top-0 left-0 h-100 w-100 bg-white"
+      className="fixed top-0 left-0 h-100 w-100 bg-lamp-black"
       onClick={() => Tone.start()}
     >
       <SideNav state={state} dispatch={dispatch} />

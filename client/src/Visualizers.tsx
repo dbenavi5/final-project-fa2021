@@ -2,7 +2,7 @@
 import * as Tone from 'tone';
 import Sketch from 'react-p5';
 import P5 from 'p5';
-import React, { useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useMemo, useCallback } from 'react';
 
 type VisualizerDrawer = (p5: P5, analyzer: Tone.Analyser) => void;
 
@@ -35,6 +35,7 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
     p5.resizeCanvas(width, height, false);
   }, []);
 
+
   useEffect(() => {
     Tone.getDestination().volume.value = -5;
     Tone.getDestination().connect(analyzer);
@@ -42,16 +43,19 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
       Tone.getDestination().disconnect(analyzer);
     };
   }, [analyzer]);
-
+  
   const setup = (p5: P5, canvasParentRef: Element) => {
     const width = window.innerWidth;
     const height = window.innerHeight / 2;
-    p5.createCanvas(width, height).parent(canvasParentRef);
-  };
+   p5.createCanvas(width, height).parent(canvasParentRef);
+  
+  
+  //p5.createCanvas(window.innerWidth, window.innerHeight).parent(canvasParentRef); //added this
 
+  };
   return (
-    <div className={'bg-black absolute bottom-0 right-0 left-0 h-50'}>
-      <div className={'z-1 absolute left-0 top-0 pa4 white f5'}>{name}</div>
+    <div className={'absolute bottom-0 right-0 left-0 h-50'}>
+      <div className={'z-1 absolute left-2 top-0 pa4 white f3 fw7'}>{name}</div>
       <Sketch
         setup={setup}
         draw={p5 => draw(p5, analyzer)}

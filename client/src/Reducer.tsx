@@ -2,7 +2,7 @@
 import { List, Map, fromJS } from 'immutable';
 
 // project deps
-import { Instrument } from './Instruments';
+import { Instrument } from './Instrument2';
 import { Visualizer } from './Visualizers';
 import { AppState } from './State';
 

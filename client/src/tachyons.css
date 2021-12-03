@@ -284,10 +284,17 @@
 			-m  = medium
 			-l  = large
  
+			button {
+				background: none;
+				border: none;
+				cursor: pointer;
+			}
  */
  .outline { outline: 1px solid; }
  .outline-transparent { outline: 1px solid transparent; }
  .outline-0 { outline: 0; }
+ .no-bg {background: none;}
+ .no-border {border: none;}
  /*
  
 		 BORDERS
@@ -311,11 +318,15 @@
  
  */
  .ba { border-style: solid; border-width: 1px; }
+ .ba-5 { border-style: solid; border-width: 5px; }
  .bt { border-top-style: solid; border-top-width: 1px; }
+ .bt-5 { border-top-style: solid; border-top-width: 5px; }
  .br { border-right-style: solid; border-right-width: 1px; }
  .bb { border-bottom-style: solid; border-bottom-width: 1px; }
+ .bb-5 { border-bottom-style: solid; border-bottom-width: 5px; }
  .bl { border-left-style: solid; border-left-width: 1px; }
  .bn { border-style: none; border-width: 0; }
+ .bc {border-color: #aaa9ad;}
  /*
  
 		BORDER COLORS
@@ -385,10 +396,13 @@
  .b--light-pink { border-color: #ffa3d7; }
  .b--dark-green { border-color: #137752; }
  .b--green { border-color: #19a974; }
+ .b--spring-green { border-color: #00fa9a; }
  .b--light-green { border-color: #9eebcf; }
  .b--navy { border-color: #001b44; }
  .b--dark-blue { border-color: #00449e; }
  .b--blue { border-color: #357edd; }
+ .b--royal-blue { border-color: #3d0cf1; }
+ .b--purple-blue { border-color: #572afe; }
  .b--light-blue { border-color: #96ccff; }
  .b--lightest-blue { border-color: #cdecff; }
  .b--washed-blue { border-color: #f6fffe; }
@@ -429,6 +443,7 @@
  .br2 { border-radius: .25rem; }
  .br3 { border-radius: .5rem; }
  .br4 { border-radius: 1rem; }
+ .br5 { border-radius: 15px; }
  .br-100 { border-radius: 100%; }
  .br-pill { border-radius: 9999px; }
  .br--bottom { border-top-left-radius: 0; border-top-right-radius: 0; }
@@ -553,6 +568,7 @@
  .right-1 { right: 1rem; }
  .bottom-1 { bottom: 1rem; }
  .left-1 { left: 1rem; }
+ .left-16 { left: 16rem; }
  .top-2 { top: 2rem; }
  .right-2 { right: 2rem; }
  .bottom-2 { bottom: 2rem; }
@@ -824,9 +840,19 @@
  /* Height Scale */
  .h1 { height: 1rem; }
  .h2 { height: 2rem; }
- .h3 { height: 4rem; }
- .h4 { height: 8rem; }
- .h5 { height: 16rem; }
+ .h3 { height: 3rem; }  
+ .h4 { height: 4rem; }
+ .h5 { height: 5rem; }
+ .h6 { height: 9rem; }
+ .h7 { height: 7rem; }
+ .h8 { height: 8rem; }
+ .h9 { height: 9rem; }
+ .h10 { height: 10rem; }
+ .h11 { height: 11rem; }
+ .h12 { height: 12rem; }
+ .h13 { height: 13rem; }
+ .h14 { height: 14rem; }
+ /* ===================== */
  /* Height Percentages - Based off of height of parent */
  .h-25 { height: 25%; }
  .h-50 { height: 50%; }
@@ -976,9 +1002,23 @@
  /* Width Scale */
  .w1 { width: 1rem; }
  .w2 { width: 2rem; }
- .w3 { width: 4rem; }
- .w4 { width: 8rem; }
- .w5 { width: 16rem; }
+ .w3 { width: 3rem; }
+ .w4 { width: 4rem; }
+ .w5 { width: 5rem; }
+  /* ===================== */
+ .w6 { width: 6rem; }
+ .w7 { width: 7rem; }
+ .w8 { width: 8rem; }
+ .w9 { width: 9rem; }
+ .w10 { width: 10rem; }
+ .w11 { width: 11rem; }
+ .w12 { width: 12rem; }
+ .w13 { width: 13rem; }
+ .w14 { width: 14rem; }
+ .w15 { width: 15rem; }
+ .w16 { width: 16rem; }
+ .w18 { width: 18rem; }
+  /* ===================== */
  .w-10 { width: 10%; }
  .w-20 { width: 20%; }
  .w-25 { width: 25%; }
@@ -1123,11 +1163,13 @@
  .light-green { color: #9eebcf; }
  .navy { color: #001b44; }
  .dark-blue { color: #00449e; }
+ .purple-blue { color: #3d0cf1; }
  .blue { color: #357edd; }
  .light-blue { color: #96ccff; }
  .lightest-blue { color: #cdecff; }
  .washed-blue { color: #f6fffe; }
  .washed-green { color: #e8fdf5; }
+ .space-green { color: #00fa9a; }
  .washed-yellow { color: #fffceb; }
  .washed-red { color: #ffdfdf; }
  .color-inherit { color: inherit; }
@@ -1152,10 +1194,12 @@
  .bg-white-20 { background-color: rgba( 255, 255, 255, .2 ); }
  .bg-white-10 { background-color: rgba( 255, 255, 255, .1 ); }
  .bg-black { background-color: #000; }
+ .bg-lamp-black { background-color: #231F20; }
  .bg-near-black { background-color: #111; }
  .bg-dark-gray { background-color: #333; }
  .bg-mid-gray { background-color: #555; }
  .bg-gray { background-color: #777; }
+ .bg-outer-space{ background-color: #353839; }
  .bg-silver { background-color: #999; }
  .bg-light-silver { background-color: #aaa; }
  .bg-moon-gray { background-color: #ccc; }
@@ -1178,6 +1222,7 @@
  .bg-light-pink { background-color: #ffa3d7; }
  .bg-dark-green { background-color: #137752; }
  .bg-green { background-color: #19a974; }
+ .bg-space-green { background-color: #00fa9a; }
  .bg-light-green { background-color: #9eebcf; }
  .bg-navy { background-color: #001b44; }
  .bg-dark-blue { background-color: #00449e; }
@@ -1509,6 +1554,7 @@
  .ph6 { padding-left: 8rem; padding-right: 8rem; }
  .ph7 { padding-left: 16rem; padding-right: 16rem; }
  .ma0 { margin: 0; }
+ .ma-01 { margin: 0 auto 15px}
  .ma1 { margin: .25rem; }
  .ma2 { margin: .5rem; }
  .ma3 { margin: 1rem; }
@@ -1928,6 +1974,7 @@
  .z-3 { z-index: 3; }
  .z-4 { z-index: 4; }
  .z-5 { z-index: 5; }
+ .z-7 { z-index: 7; }
  .z-999 { z-index: 999; }
  .z-9999 { z-index: 9999; }
  .z-max { z-index: 2147483647; }
@@ -2102,6 +2149,16 @@
 	.right-0-ns { right: 0; }
 	.bottom-0-ns { bottom: 0; }
 	.top-1-ns { top: 1rem; }
+	/* ================================= */
+	.top-5-ns { top: 5rem; }
+	.top-8-ns { top: 8rem; }
+	.top-9-ns { top: 9rem; }
+	.top-10-ns { top: 10rem; }
+	.top-11-ns { top: 11rem; }
+	.top-15-ns { top: 15rem; }
+	.top-20-ns { top: 20rem; }
+	.top-21-ns { top: 21rem; }
+	/* ================================= */
 	.left-1-ns { left: 1rem; }
 	.right-1-ns { right: 1rem; }
 	.bottom-1-ns { bottom: 1rem; }
@@ -2235,6 +2292,9 @@
 	.w3-ns { width: 4rem; }
 	.w4-ns { width: 8rem; }
 	.w5-ns { width: 16rem; }
+	 /* Customized by Diana Benavides */
+	.w6-ns { width: 18rem; }
+	 /* ============================= */
 	.w-10-ns { width: 10%; }
 	.w-20-ns { width: 20%; }
 	.w-25-ns { width: 25%; }
@@ -2528,12 +2588,15 @@
 	.right-0-m { right: 0; }
 	.bottom-0-m { bottom: 0; }
 	.top-1-m { top: 1rem; }
+	.top-4-m { top: 5rem; }
 	.left-1-m { left: 1rem; }
 	.right-1-m { right: 1rem; }
 	.bottom-1-m { bottom: 1rem; }
 	.top-2-m { top: 2rem; }
 	.left-2-m { left: 2rem; }
+	.left-20-m { left: 20rem; }
 	.right-2-m { right: 2rem; }
+	.right-20-m { right: 20rem; }
 	.bottom-2-m { bottom: 2rem; }
 	.top--1-m { top: -1rem; }
 	.right--1-m { right: -1rem; }

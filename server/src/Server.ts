@@ -1,5 +1,4 @@
 import { Server, Socket } from 'socket.io';
-import { DB } from './Database';
 import http from 'http';
 import { MessageHandler } from './MessageHandler';
 import { GetSongsHandler } from './handlers/GetSongsHandler';

@@ -5,7 +5,7 @@ import { List, Range } from 'immutable';
 import React from 'react';
 
 // project imports
-import { Instrument, InstrumentProps } from '../Instruments';
+import { Instrument, InstrumentProps } from '../Instrument2';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Piano.
@@ -39,8 +39,8 @@ export function PianoKey({
       onMouseDown={() => synth?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?
       onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
       className={classNames('ba pointer absolute dim', {
-        'bg-black black h3': minor, // minor keys are black
-        'black bg-white h4': !minor, // major keys are white
+        'bg-black black h4': minor, // minor keys are black
+        'black bg-white h8': !minor, // major keys are white
       })}
       style={{
         // CSS
@@ -91,8 +91,8 @@ function PianoType({ title, onClick, active }: any): JSX.Element {
     <div
       onClick={onClick}
       className={classNames('dim pointer ph2 pv1 ba mr2 br1 fw7 bw1', {
-        'b--black black': active,
-        'gray b--light-gray': !active,
+        'b--white space-green': active,
+        'b--light-gray white': !active,
       })}
     >
       {title}
@@ -141,7 +141,7 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
 
   return (
     <div className="pv4">
-      <div className="relative dib h4 w-100 ml4">
+      <div className="relative dib h8 w-100 ml4">
         {Range(2, 7).map(octave =>
           keys.map(key => {
             const isMinor = key.note.indexOf('b') !== -1;

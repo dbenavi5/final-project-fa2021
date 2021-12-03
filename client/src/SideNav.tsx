@@ -1,7 +1,7 @@
 // 3rd party library imports
 import classNames from 'classnames';
 import { List } from 'immutable';
-import React from 'react';
+import { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
   RadioButton20,
@@ -12,9 +12,12 @@ import {
 // project imports
 import { DispatchAction } from './Reducer';
 import { AppState } from './State';
-import { Instrument } from './Instruments';
+import { Instrument } from './Instrument2';
 import { Visualizer } from './Visualizers';
-
+import { Input } from '@material-ui/core';
+import logo from './img/logo.png';
+import MusicPlayer from './components/MusicPlayer';
+import tracks from "./components/tracks";
 
 /** ------------------------------------------------------------------------ **
  * All the components in the side navigation.
@@ -27,9 +30,9 @@ interface SideNavProps {
 
 const Section: React.FC<{ title: string }> = ({ title, children }) => {
   return (
-    <div className="flex flex-column h-25 bb b--light-gray pa3">
-      <div className="fw7 mb2">{title} </div>
-      <div className="flex-auto overflow-scroll">{children}</div>
+    <div className="flex flex-column h-25 bb b--white pa3 white">
+      <div className="f3 fw7 mb2 space-green">{title}</div>
+      <div className="flex-auto overflow-y-auto">{children}</div>
     </div>
   );
 };
@@ -45,7 +48,7 @@ function RadioButton({ to, text, active, onClick }: RadioButtonProps): JSX.Eleme
   return (
     <Link to={to} className="no-underline">
       <div
-        className={classNames('f6 flex items-center black', { fw7: active })}
+        className={classNames('f6 flex items-center white', { fw7: active })}
         onClick={onClick}
       >
         {active ? (
@@ -53,7 +56,7 @@ function RadioButton({ to, text, active, onClick }: RadioButtonProps): JSX.Eleme
         ) : (
           <RadioButton20 className="mr1" />
         )}
-        <div className="dim">{text}</div>
+        <div className="dim f4">{text}</div>
       </div>
     </Link>
   );
@@ -104,12 +107,30 @@ function Visualizers({ state }: SideNavProps): JSX.Element {
 
 function Songs({ state, dispatch }: SideNavProps): JSX.Element {
   const songs: List<any> = state.get('songs', List());
+  const [searchSong, setSearchSong] = useState('');
+
+  const handleChange = (event: any) => {
+    setSearchSong(event.target.value)
+  }
+
+  const results = !searchSong
+    ? songs
+    : songs.filter((song) =>
+      song.toString().toLowerCase().includes(searchSong.toString().toLowerCase()));
+
   return (
     <Section title="Playlist">
-      {songs.map(song => (
+      <Input
+        type="text"
+        className='bg-white w-100 pa3'
+        placeholder='Search...'
+        value={searchSong}
+        onChange={handleChange}
+      />
+      {results.map((song) => (
         <div
           key={song.get('id')}
-          className="f6 pointer underline flex items-center no-underline i dim"
+          className="f4 pointer underline flex items-center no-underline i dim white"
           onClick={() =>
             dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
           }
@@ -124,14 +145,24 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
 
 export function SideNav({ state, dispatch }: SideNavProps): JSX.Element {
   return (
-    <div className="absolute top-0 left-0 bottom-0 w5 z-1 shadow-1 bg-white flex flex-column">
-      <div className="h3 fw7 f5 flex items-center pl3 bb b--light-gray">
-        Nameless App
+    <div
+      className="absolute top-0 left-0 bottom-0 w18 z-max bg-black flex flex-column">
+      <div
+        className="h4 fw7 f3 flex items-center pl3 bb b--white white">
+        <img
+          src={logo}
+          alt="VN Logo"
+          className='z-max h3 w3'
+          width='3rem'
+          height='3rem'
+        />
+        &nbsp;&nbsp;VisualNoise
       </div>
       <div className="flex-auto">
         <Instruments state={state} dispatch={dispatch} />
         <Visualizers state={state} dispatch={dispatch} />
         <Songs state={state} dispatch={dispatch} />
+        <MusicPlayer tracks={tracks} />
       </div>
     </div>
   );
