@@ -6,8 +6,8 @@ import * as Tone from 'tone';
 import { Visualizer } from '../Visualizers';
 
 
-export const KaleidoscopeVisualizer = new Visualizer(
-  'WilliamYu5',
+export const WilliamYu5Visualizer = new Visualizer(
+  'Kaleidoscope',
   (p5: P5, analyzer: Tone.Analyser) => {
     const width = window.innerWidth;
     const height = window.innerHeight / 2;
@@ -21,7 +21,7 @@ export const KaleidoscopeVisualizer = new Visualizer(
 
     const values = analyzer.getValue();
     p5.beginShape();
-    for (let i = 0; i < values.length; i++) {
+    for (let i = 0; i < values.length; i+=5) {
       const amplitude = values[i] as number;
       if (i < values.length && amplitude > (values[i+1] as number) * 100) {
         p5.stroke(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
