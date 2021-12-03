@@ -9,32 +9,6 @@ import { StereoFeedbackEffect } from 'tone/build/esm/effect/StereoFeedbackEffect
 // project imports
 import { Visualizer } from '../Visualizers';
 
-
-// export const niceVisualizer = new Visualizer(
-//   'nice',
-//   (p5: P5, analyzer: Tone.Analyser) => {
-//     const width = window.innerWidth;
-//     const height = window.innerHeight / 2;
-//     const dim = Math.min(width, height);
-
-//     p5.background(0, 0, 0, 255);
-
-//     p5.strokeWeight(dim * 0.01);
-//     p5.stroke(255, 0, 255, 255);
-//     p5.noFill();
-
-//     const values = analyzer.getValue();
-//     p5.beginShape();
-//     for (let i = 0; i < values.length; i++) {
-//       const amplitude = values[i] as number;
-//       const x = p5.map(i, 0, values.length - 1, 0, width);
-//       const y = height / 2 + amplitude * height;
-//       // Place vertex
-//       p5.vertex(x, y);
-//     }
-//     p5.endShape();
-//   },
-// );
  
 export const trippyVisualizer = new Visualizer(
     'Trippy',
@@ -43,7 +17,6 @@ export const trippyVisualizer = new Visualizer(
       const height = window.innerHeight / 2;
       const dim = Math.min(width, height);
   
-      //p5.background(200);
 
       const topColor = p5.color(88,147,223);
       const bottomColor = p5.color(0,0,0);
@@ -55,21 +28,11 @@ export const trippyVisualizer = new Visualizer(
         p5.line(0,y,width,y);
       }
   
-      // p5.strokeWeight(dim * 0.01);
-      // p5.stroke(255, 255, 255, 255);
-      // p5.noFill();
 
       const values = analyzer.getValue();
 
       p5.beginShape();
       
-      // for (let i = 0; i < values.length; i++) {
-      //   const amplitude = values[i] as number;
-      //   const x = p5.map(i, 0, values.length - 1, 0, width);
-      //   const y = height / 2 + amplitude * height;
-      //   // Place vertex
-      //   p5.vertex(x, y);
-      // }
       p5.angleMode(p5.DEGREES)
       p5.rectMode(p5.CENTER)
       
