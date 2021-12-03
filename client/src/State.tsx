@@ -9,6 +9,8 @@ import { WaveformVisualizer } from './visualizers/Waveform';
 import { CircleWaveformVisualizer } from './visualizers/dbenavi5_visualizer_2';
 import { RaymondVisualizers } from './visualizers/raymond-git_visualizer_1';
 import { GuitarInstrument } from './instruments/raymond-git_instrument_1';
+import { trippyVisualizer } from './visualizers/illiquid47_visualizer-3';
+import { XylophoneInstrument } from './instruments/illiquid47_instrument-3';
 
 
 /** ------------------------------------------------------------------------ **
@@ -23,8 +25,8 @@ import { GuitarInstrument } from './instruments/raymond-git_instrument_1';
  */
 export type AppState = Map<string, any>;
 
-const instruments = List([PianoInstrument, DrumInstrument, GuitarInstrument]);
-const visualizers = List([WaveformVisualizer, CircleWaveformVisualizer, RaymondVisualizers]);
+const instruments = List([PianoInstrument, DrumInstrument, GuitarInstrument, XylophoneInstrument]);
+const visualizers = List([WaveformVisualizer, CircleWaveformVisualizer, RaymondVisualizers, trippyVisualizer]);
 
 export const defaultState: AppState = Map<string, any>({
   instruments,
