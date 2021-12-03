@@ -46,7 +46,7 @@ function VisualizerPanel({ state }: PanelProps): JSX.Element {
   const visualizer = state.get('visualizer');
 
   return (
-    <div>
+    <div className='z-9999'>
       {visualizer && (
         <VisualizerContainer key={visualizer.name} visualizer={visualizer} />
       )}
@@ -61,8 +61,7 @@ function InstrumentAndVisualizer({ state, dispatch }: PanelProps): JSX.Element {
 
   return (
     <div
-      className="absolute right-0 bottom-0 top-0 flex flex-column white"
-      style={{ left: '16rem' }}
+      className="absolute left-16 right-0 bottom-0 top-0 flex flex-column white"
     >
       <InstrumentPanel state={state} dispatch={dispatch} />
       <VisualizerPanel state={state} dispatch={dispatch} />
@@ -73,8 +72,7 @@ function InstrumentAndVisualizer({ state, dispatch }: PanelProps): JSX.Element {
 function ShowWelcome(): JSX.Element {
   return (
     <div
-      className="absolute right-0 bottom-0 top-0 flex flex-column items-center justify-center white"
-      style={{ left: '16rem' }}
+      className="absolute right-0 left-0 bottom-0 top-0 flex flex-column items-center justify-center white"
     >
       <div className="mw6 lh-copy mb4 white">
         <Music32 />
@@ -108,7 +106,7 @@ export function MainPage({ state, dispatch }: PanelProps): JSX.Element {
 
   return (
     <div
-      className="fixed top-0 left-0 h-100 w-100 bg-black"
+      className="fixed top-0 left-0 h-100 w-100 bg-lamp-black"
       onClick={() => Tone.start()}
     >
       <SideNav state={state} dispatch={dispatch} />

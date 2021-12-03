@@ -2,7 +2,7 @@
 import * as Tone from 'tone';
 import Sketch from 'react-p5';
 import P5 from 'p5';
-import React, { useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useMemo, useCallback } from 'react';
 
 type VisualizerDrawer = (p5: P5, analyzer: Tone.Analyser) => void;
 
@@ -50,8 +50,8 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
   };
 
   return (
-    <div className={'bg-black absolute bottom-0 right-0 left-0 h-50'}>
-      <div className={'z-1 absolute left-0 top-0 pa4 white f5'}>{name}</div>
+    <div className={'absolute bottom-0 right-0 left-0 h-50'}>
+      <div className={'z-1 absolute left-2 top-0 pa4 white f3 fw7'}>{name}</div>
       <Sketch
         setup={setup}
         draw={p5 => draw(p5, analyzer)}

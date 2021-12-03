@@ -37,10 +37,10 @@ function TopNav({ name }: { name: string }) {
     return (
         <div
             className={
-                'w-100 h4 bb b--light-gray flex justify-between items-center ph4'
+                'w-100 h4 bb bg-black b--white flex justify-between items-center ph4'
             }
         >
-            <div className={'fw7'} style={{ fontSize: '30px' }}>{name}</div>
+            <div className={'fw7 f3 pl4'}>{name}</div>
         </div>
     );
 }
@@ -64,7 +64,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
     );
     const [membrane, setMembrane] = useState(
         new Tone.MembraneSynth({
-            pitchDecay: 0.05,
+            pitchDecay: 0.02,
             octaves: 3,
             oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
         }).toDestination(),
@@ -94,60 +94,58 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
         }).toDestination(),
     );
 
-const notes = state.get('notes');
+    const notes = state.get('notes');
 
-// useEffect for playlist song
-useEffect(() => {
-    if (notes && synth) {
-        let eachNote = notes.split(' ');
-        let noteObjs = eachNote.map((note: string, idx: number) => ({
-            idx,
-            time: `+${idx / 4}`,
-            note,
-            velocity: 1,
-        }));
+    // useEffect for playlist song
+    useEffect(() => {
+        if (notes && synth) {
+            let eachNote = notes.split(' ');
+            let noteObjs = eachNote.map((note: string, idx: number) => ({
+                idx,
+                time: `+${idx / 4}`,
+                note,
+                velocity: 1,
+            }));
 
-        new Tone.Part((time, value) => {
-            // the value is an object which contains both the note and the velocity
-            synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
+            new Tone.Part((time, value) => {
+                // the value is an object which contains both the note and the velocity
+                synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
 
+                // I think this condition allows the user replay the song.
+                if (value.idx === eachNote.length - 1) {
+                    dispatch(new DispatchAction('STOP_SONG'));
+                }
+            }, noteObjs).start(0);
 
-            // I think this condition allows the user replay the song.
-            if (value.idx === eachNote.length - 1) {
-                dispatch(new DispatchAction('STOP_SONG'));
-            }
-        }, noteObjs).start(0);
+            Tone.Transport.start();
 
-        Tone.Transport.start();
+            return () => {
+                Tone.Transport.cancel();
+            };
+        }
 
-        return () => {
-            Tone.Transport.cancel();
-        };
-    }
+        return () => { };
+    }, [notes, synth, dispatch]);
 
-    return () => { };
-}, [notes, synth, dispatch]);
-
-return (
-    <div>
-        <TopNav name={instrument.name} />
-        <div
-            className={'absolute right-0 left-0'}
-            style={{ top: '4rem' }}
-        >
-            <InstrumentComponent
-                state={state}
-                dispatch={dispatch}
-                synth={synth}
-                membrane={membrane}
-                noise={noise}
-                metal={metal}
-                setSynth={setSynth}
-                setMembrane={setMembrane}
-                setNoise={setNoise}
-                setMetal={setMetal}
-            />
+    return (
+        <div>
+            <TopNav name={instrument.name} />
+            <div
+                className={'left-2 absolute right-0'}
+            >
+                <InstrumentComponent
+                    state={state}
+                    dispatch={dispatch}
+                    synth={synth}
+                    membrane={membrane}
+                    noise={noise}
+                    metal={metal}
+                    setSynth={setSynth}
+                    setMembrane={setMembrane}
+                    setNoise={setNoise}
+                    setMetal={setMetal}
+                />
+            </div>
         </div>
-    </div>
-);
+    );
 };

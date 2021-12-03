@@ -12,7 +12,7 @@ export class Particle {
         this.velocity = Vector.random2D().mult(0);                                      // <- empty vector
         this.acceleration = this.position.copy().mult(p5.random(0.0001, 0.00001));      // <- must be smaller than this.position
         this.pSize = p5.random(4, 6);                                                   // <- size of particles
-        this.color = [p5.random(200, 255), p5.random(200, 255), p5.random(200, 255)];   // <- random color for particles
+        this.color = [p5.random(100, 255), p5.random(200, 255), p5.random(150, 255)];   // <- random color for particles
     }
 
     update(condition: boolean) {

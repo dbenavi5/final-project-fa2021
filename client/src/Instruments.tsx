@@ -92,7 +92,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
     <div>
       <TopNav name={instrument.name} />
       <div
-        className={'bg-white absolute right-0 left-0'}
+        className={'absolute right-0 left-0'}
         style={{ top: '4rem' }}
       >
         <InstrumentComponent

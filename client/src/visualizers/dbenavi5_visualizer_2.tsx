@@ -47,7 +47,6 @@ export const CircleWaveformVisualizer = new Visualizer(
                 for (let i = 0; i < values.length; i++) {        // <- second inner loop
                     const index = p5.floor(p5.map(i, 0, 180, 0, values.length - 1));
                     const amp = values[index] as number*2;
-                    // console.log('amp',amp);
                     const radius = p5.map(amp, -1, 1, 80, 200);
 
                     const x = radius * p5.sin(i) * j;

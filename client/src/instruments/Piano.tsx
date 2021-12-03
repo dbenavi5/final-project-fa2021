@@ -5,7 +5,7 @@ import { List, Range } from 'immutable';
 import React from 'react';
 
 // project imports
-import { Instrument, InstrumentProps } from '../Instruments';
+import { Instrument, InstrumentProps } from '../Instrument2';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Piano.
@@ -91,8 +91,8 @@ function PianoType({ title, onClick, active }: any): JSX.Element {
     <div
       onClick={onClick}
       className={classNames('dim pointer ph2 pv1 ba mr2 br1 fw7 bw1', {
-        'b--black blue': active,
-        'gray b--light-gray': !active,
+        'b--white space-green': active,
+        'b--light-gray white': !active,
       })}
     >
       {title}

@@ -1,4 +1,4 @@
-import _sqlite3, { Database, Statement } from 'sqlite3';
+import _sqlite3, { Database } from 'sqlite3';
 import fs from 'fs/promises';
 import { constants } from 'fs';
 import path from 'path';
@@ -90,7 +90,7 @@ export class DB {
       });
     });
   }
-}
+}   // end of DB class
 
 async function slurp(sqlFile: string): Promise<string> {
   const buf = await fs.readFile(path.join('src', 'sql', `${sqlFile}.sql`));
