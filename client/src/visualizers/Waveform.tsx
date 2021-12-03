@@ -5,7 +5,6 @@ import * as Tone from 'tone';
 // project imports
 import { Visualizer } from '../Visualizers';
 
-
 export const WaveformVisualizer = new Visualizer(
   'Waveform',
   (p5: P5, analyzer: Tone.Analyser) => {
@@ -14,12 +13,14 @@ export const WaveformVisualizer = new Visualizer(
     const dim = Math.min(width, height);
 
     p5.background(0, 0, 0, 255);
-
+    //This is the size of the stroke which is the white ling
     p5.strokeWeight(dim * 0.01);
+    //Commenting this out will give no line when playing music, so make sure to have stroke
     p5.stroke(255, 255, 255, 255);
+    //This will not fill in any color if called
     p5.noFill();
 
-    const values = analyzer.getValue();
+     const values = analyzer.getValue();
     p5.beginShape();
     for (let i = 0; i < values.length; i++) {
       const amplitude = values[i] as number;
