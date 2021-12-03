@@ -29,6 +29,7 @@
       "camelcase-keys": "^7.0.0",
       "dotenv": "^10.0.0",
       "express": "^4.17.1",
+      "help": "^3.0.2",
       "fretboards": "^0.5.0",
       "joi": "^17.4.2",
       "package.json": "^2.0.1",
