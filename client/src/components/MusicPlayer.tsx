@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Controls from "./Controls";
+import * as Tone from 'tone';
 
 /**
  *  Inspired by Ryan Finni

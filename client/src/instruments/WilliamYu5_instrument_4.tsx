@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { List, Range } from 'immutable';
 
 // project imports
-import { Instrument, InstrumentProps } from '../Instruments3';
+import { Instrument, InstrumentProps } from '../Instruments';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Ocarina.

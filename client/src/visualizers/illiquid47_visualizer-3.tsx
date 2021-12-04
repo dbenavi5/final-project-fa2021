@@ -1,22 +1,15 @@
-//export {}
-
 // 3rd party library imports
-import { RecentlyViewed32 } from '@carbon/icons-react';
 import P5 from 'p5';
 import * as Tone from 'tone';
-import { StereoFeedbackEffect } from 'tone/build/esm/effect/StereoFeedbackEffect';
 
 // project imports
 import { Visualizer } from '../Visualizers';
-
  
 export const trippyVisualizer = new Visualizer(
     'Trippy',
     (p5: P5, analyzer: Tone.Analyser) => {
       const width = window.innerWidth;
       const height = window.innerHeight / 2;
-      const dim = Math.min(width, height);
-  
 
       const topColor = p5.color(88,147,223);
       const bottomColor = p5.color(0,0,0);
@@ -27,7 +20,6 @@ export const trippyVisualizer = new Visualizer(
         p5.stroke(lineColor);
         p5.line(0,y,width,y);
       }
-  
 
       const values = analyzer.getValue();
 
@@ -53,14 +45,10 @@ export const trippyVisualizer = new Visualizer(
         let b = p5.map(p5.sin(p5.frameCount / 4), -1, 1, 50, 255)
 
         p5.stroke(r, g, b)
-        
         p5.rect(0, 0, 600 - i * 3, 600 - i * 3, 200 - i)
-
         p5.pop()
       }
       
-
-
       p5.endShape();      
     },
   );

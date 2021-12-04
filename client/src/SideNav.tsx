@@ -12,7 +12,7 @@ import {
 // project imports
 import { DispatchAction } from './Reducer';
 import { AppState } from './State';
-import { Instrument } from './Instrument2';
+import { Instrument } from './Instruments';
 import { Visualizer } from './Visualizers';
 import { Input } from '@material-ui/core';
 import logo from './img/logo.png';

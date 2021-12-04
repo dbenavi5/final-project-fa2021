@@ -3,7 +3,7 @@ import * as Tone from 'tone';
 import { List, Range } from 'immutable';
 import './style/raymond-git_Instrument.css';
 // project imports
-import { Instrument, InstrumentProps } from '../Instruments2';
+import { Instrument, InstrumentProps } from '../Instruments';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Piano.
@@ -16,28 +16,15 @@ interface GuitarSoundProp {
   minor?: boolean; // True if minor key, false if major key
   octave: number;
   pluck?: Tone.PluckSynth;
-  Fm?: Tone.FMSynth;
   index: number | string; // octave + index together give a location for the piano key
   name: string;
 }
 
 export function GuitarSound({
-  name,
   note,
-  synth,
-  minor,
-  index,
-  pluck,
-  Fm,
 }: GuitarSoundProp): JSX.Element {
-  /**
-   * This React component corresponds to either a major or minor key in the piano.
-   * See `PianoKeyWithoutJSX` for the React component without JSX.
-   */
 
-   const plucky = new Tone.PluckSynth({}).toDestination();
-  // const fmSynth = new Tone.FMSynth().toDestination();
-
+  const plucky = new Tone.PluckSynth().toDestination();
 
   return (
     <div
@@ -149,11 +136,11 @@ export function GuitarSound({
 
 function Guitar({ pluck }: InstrumentProps): JSX.Element {
   const guitarKeys = List([
-    { note: 'C5', idx: 0, name: 'C4' },
-    { note: 'C4', idx: +1, name: 'C3' },
+    { note: 'E5', idx: 0, name: 'C4' },
+    { note: 'D4', idx: +1, name: 'C3' },
     { note: 'C3', idx: +1.5, name: 'C2' },
-    { note: 'C2', idx: +2, name: 'C1' },
-    { note: 'C1', idx: +2.5, name: 'C1' },
+    { note: 'B2', idx: +2, name: 'C1' },
+    { note: 'A1', idx: +2.5, name: 'C1' },
   ]);
 
   return (
@@ -168,7 +155,6 @@ function Guitar({ pluck }: InstrumentProps): JSX.Element {
                 name={name}
                 key={guitarNote} //react key
                 note={guitarNote}
-                // Fm={Fm}
                 pluck={pluck}
                 octave={octave}
                 index={(octave - 1) + key.idx}
