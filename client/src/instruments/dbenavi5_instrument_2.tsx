@@ -17,7 +17,6 @@ import { Instrument, InstrumentProps } from '../Instruments';
  * metal: hi-hat, cymbal, clash
  ** ------------------------------------------------------------------------ */
 
-
 interface DrumMetalSoundProps {
   note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
   duration?: string;
@@ -48,7 +47,6 @@ interface DrumNoiseSoundProps {
   octave: number;
   index: number; // octave + index together give a location for the piano key
 }
-
 
 export function DrumMetalSound({
   note,

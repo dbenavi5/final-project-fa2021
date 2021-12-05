@@ -29,7 +29,7 @@ export function GuitarSound({
   return (
     <div
       onMouseDown={() => plucky?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?
-      onMouseUp={() => plucky?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      // onMouseUp={() => plucky?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
       className='guitar'
     >
       <div className='strings'>
@@ -136,11 +136,11 @@ export function GuitarSound({
 
 function Guitar({ pluck }: InstrumentProps): JSX.Element {
   const guitarKeys = List([
-    { note: 'E5', idx: 0, name: 'C4' },
-    { note: 'D4', idx: +1, name: 'C3' },
-    { note: 'C3', idx: +1.5, name: 'C2' },
-    { note: 'B2', idx: +2, name: 'C1' },
-    { note: 'A1', idx: +2.5, name: 'C1' },
+    { note: 'E2', idx: 0, name: 'C4' },
+    { note: 'D2', idx: 1, name: 'C3' },
+    { note: 'C2', idx: 1.5, name: 'C2' },
+    { note: 'B2', idx: 2, name: 'C1' },
+    { note: 'A2', idx: 2.5, name: 'C1' },
   ]);
 
   return (

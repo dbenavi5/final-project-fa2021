@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import Controls from "./Controls";
-import * as Tone from 'tone';
 
 /**
  *  Inspired by Ryan Finni
@@ -48,6 +47,7 @@ const MusicPlayer = ({ tracks }: any) => {
     useEffect(() => {
         audioRef.current.pause();
         audioRef.current = new Audio(audioSrc);
+        audioRef.current.volume = 0.2
 
         if (isReady.current) {
             audioRef.current.play();
