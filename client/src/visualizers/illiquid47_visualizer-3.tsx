@@ -41,14 +41,14 @@ export const trippyVisualizer = new Visualizer(
 
       p5.translate(width /2, height / 2)
 
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 200; i++) {     // draws the visualizer lines
         const amplitude = values[i] as number;
         
         p5.push()
 
-        p5.rotate(p5.sin(p5.frameCount + i) * 300 * amplitude)
+        p5.rotate(p5.sin(p5.frameCount + i) * 300 * amplitude)  // create vibration effect 
 
-        let r = p5.map(p5.sin(p5.frameCount), -1, 1, 50, 255)
+        let r = p5.map(p5.sin(p5.frameCount), -1, 1, 50, 255)   // color
         let g = p5.map(p5.cos(p5.frameCount / 2), -1, 1, 50, 255)
         let b = p5.map(p5.sin(p5.frameCount / 4), -1, 1, 50, 255)
 

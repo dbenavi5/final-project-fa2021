@@ -11,98 +11,196 @@ import { AppState } from './State';
  ** ------------------------------------------------------------------------ */
 
 export interface InstrumentProps {
-  state: AppState;
-  dispatch: React.Dispatch<DispatchAction>;
-  name: string;
-  synth: Tone.Synth;
-  setSynth: (f: (oldSynth: Tone.Synth) => Tone.Synth) => void;
+    synth: Tone.Synth;
+    membrane: Tone.MembraneSynth;  // <- gives kick sound
+    noise: Tone.NoiseSynth;         // <- gives snare sound
+    metal: Tone.MetalSynth;         // <- gives hi-hat sound
+    state: AppState;
+    pluck: Tone.PluckSynth;
+    mono: Tone.MonoSynth;
+    dispatch: React.Dispatch<DispatchAction>;
+    setSynth: (f: (oldSynth: Tone.Synth) => Tone.Synth) => void;
+    setMembrane: (f: (oldMembraneSynth: Tone.MembraneSynth) => Tone.MembraneSynth) => void;
+    setNoise: (f: (oldNoiseSynth: Tone.NoiseSynth) => Tone.NoiseSynth) => void;
+    setMetal: (f: (oldMetalSynth: Tone.MetalSynth) => Tone.MetalSynth) => void;
+    setPluck: (f: (oldPluckSynth: Tone.PluckSynth) => Tone.PluckSynth) => void;
+    setMono: (f: (oldMonoSynth: Tone.MonoSynth) => Tone.MonoSynth) => void;
+
 }
 
 export class Instrument {
-  public readonly name: string;
-  public readonly component: React.FC<InstrumentProps>;
+    public readonly name: string;
+    public readonly component: React.FC<InstrumentProps>;
 
-  constructor(name: string, component: React.FC<InstrumentProps>) {
-    this.name = name;
-    this.component = component;
-  }
+    constructor(name: string, component: React.FC<InstrumentProps>) {
+        this.name = name;
+        this.component = component;
+    }
 }
 
 function TopNav({ name }: { name: string }) {
-  return (
-    <div
-      className={
-        'w-100 h3 bb b--light-gray flex justify-between items-center ph4'
-      }
-    >
-      <div>{name}</div>
-    </div>
-  );
+    return (
+        <div
+            className={
+                'w-100 h4 bb bg-black b--white flex justify-between items-center ph4'
+            }
+        >
+            <div className={'fw7 f3 pl4'}>{name}</div>
+        </div>
+    );
 }
 
 interface InstrumentContainerProps {
-  state: AppState;
-  dispatch: React.Dispatch<DispatchAction>;
-  instrument: Instrument;
+    state: AppState;
+    dispatch: React.Dispatch<DispatchAction>;
+    instrument: Instrument;
 }
 
 export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
-  instrument,
-  state,
-  dispatch,
+    instrument,
+    state,
+    dispatch,
 }: InstrumentContainerProps) => {
-  const InstrumentComponent = instrument.component;
-  const [synth, setSynth] = useState(
-    new Tone.Synth({
-      oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
-    }).toDestination(),
+    const InstrumentComponent = instrument.component;
+    const [synth, setSynth] = useState(
+        new Tone.Synth({
+            oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
+        }).toDestination(),
+    );
+    const [membrane, setMembrane] = useState(
+        new Tone.MembraneSynth({
+            pitchDecay: 0.02,
+            octaves: 3,
+            oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
+        }).toDestination(),
+    );
+    const [metal, setMetal] = useState(
+        new Tone.MetalSynth({
+            envelope: {
+                attack: 0.001,
+                decay: 1.4,
+                release: 0.2
+            },
+            harmonicity: 5.1,
+            modulationIndex: 32,
+            resonance: 4000,
+            octaves: 1.5
+        }).toDestination(),
+    );
+    const [pluck, setPluck] = useState(
+      new Tone.PluckSynth({
+        attackNoise: 0,
+        dampening: 4000,
+        resonance: 0.7,
+      }).toDestination(),
+    );
+    const [noise, setNoise] = useState(
+        new Tone.NoiseSynth({
+            noise: { type: 'white' },    // sound changes from here
+            envelope: {
+                attack: 0.001,
+                decay: 0.2,
+                sustain: 0
+            }
+        }).toDestination(),
+    );
+    const [mono, setMono] = useState(
+      new Tone.MonoSynth({
+        envelope: {
+            attack: 0.05,
+            attackCurve: "linear",
+            decay: 0.3,
+            // decayCurve: "exponential",
+            release: .8,
+            // releaseCurve: "exponential",
+		    sustain: 0.4,
+        },
+        filter: {
+            detune: 0,
+            frequency: 0,
+            gain: 0,
+            // rolloff: -12,
+            type: "lowpass"
+        },
+        filterEnvelope: {
+            attack: 0.001,
+            attackCurve: "linear",
+            decay: 0.7,
+            // decayCurve: "exponential",
+            release: 0.8,
+            // releaseCurve: "exponential",
+            sustain: 0.1,
+            baseFrequency: 300,
+            exponent: 2,
+            octaves: 4,
+        },
+        oscillator: {
+            
+            type: "square",
+            
+        },
+
+      }).toDestination(),
+      
   );
 
-  const notes = state.get('notes');
 
-  useEffect(() => {
-    if (notes && synth) {
-      let eachNote = notes.split(' ');
-      let noteObjs = eachNote.map((note: string, idx: number) => ({
-        idx,
-        time: `+${idx / 4}`,
-        note,
-        velocity: 1,
-      }));
+    const notes = state.get('notes');
 
-      new Tone.Part((time, value) => {
-        // the value is an object which contains both the note and the velocity
-        synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
-        if (value.idx === eachNote.length - 1) {
-          dispatch(new DispatchAction('STOP_SONG'));
+    // useEffect for playlist song
+    useEffect(() => {
+        if (notes && synth) {
+            let eachNote = notes.split(' ');
+            let noteObjs = eachNote.map((note: string, idx: number) => ({
+                idx,
+                time: `+${idx / 4}`,
+                note,
+                velocity: 1,
+            }));
+
+            new Tone.Part((time, value) => {
+                // the value is an object which contains both the note and the velocity
+                synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
+
+                // I think this condition allows the user replay the song.
+                if (value.idx === eachNote.length - 1) {
+                    dispatch(new DispatchAction('STOP_SONG'));
+                }
+            }, noteObjs).start(0);
+
+            Tone.Transport.start();
+
+            return () => {
+                Tone.Transport.cancel();
+            };
         }
-      }, noteObjs).start(0);
 
-      Tone.Transport.start();
+        return () => { };
+    }, [notes, synth, dispatch]);
 
-      return () => {
-        Tone.Transport.cancel();
-      };
-    }
-
-    return () => {};
-  }, [notes, synth, dispatch]);
-
-  return (
-    <div>
-      <TopNav name={instrument.name} />
-      <div
-        className={'absolute right-0 left-0'}
-        style={{ top: '4rem' }}
-      >
-        <InstrumentComponent
-          name={instrument.name}
-          state={state}
-          dispatch={dispatch}
-          synth={synth}
-          setSynth={setSynth}
-        />
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <TopNav name={instrument.name} />
+            <div
+                className={'left-2 absolute right-0'}
+            >
+                <InstrumentComponent
+                    state={state}
+                    dispatch={dispatch}
+                    synth={synth}
+                    membrane={membrane}
+                    noise={noise}
+                    metal={metal}
+                    setSynth={setSynth}
+                    setMembrane={setMembrane}
+                    setNoise={setNoise}
+                    setMetal={setMetal}
+                    pluck={pluck}
+                    setPluck={setPluck}
+                    mono={mono}
+                    setMono={setMono}
+                />
+            </div>
+        </div>
+    );
 };

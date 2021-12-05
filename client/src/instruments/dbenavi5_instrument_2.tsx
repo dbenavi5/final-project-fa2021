@@ -4,7 +4,7 @@ import { List, Range } from 'immutable';
 import classNames from 'classnames';
 
 // project imports
-import { Instrument, InstrumentProps } from '../Instrument2';
+import { Instrument, InstrumentProps } from '../Instruments';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Drum Set.

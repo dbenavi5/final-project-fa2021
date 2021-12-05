@@ -3,8 +3,8 @@ import { List, Map } from 'immutable';
 
 // project dependencies
 import { PianoInstrument } from './instruments/Piano';
-import { WilliamYu5Instrument } from './instruments/WilliamYu5';
-import { WilliamYu5Visualizer } from './visualizers/WilliamYu5';
+import { WilliamYu5Instrument } from './instruments/WilliamYu5_instrument_4';
+import { WilliamYu5Visualizer } from './visualizers/WilliamYu5_visualizer_4';
 import { DrumInstrument } from './instruments/dbenavi5_instrument_2';
 import { WaveformVisualizer } from './visualizers/Waveform';
 import { CircleWaveformVisualizer } from './visualizers/dbenavi5_visualizer_2';

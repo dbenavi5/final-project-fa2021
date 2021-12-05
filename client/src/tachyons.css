@@ -528,6 +528,7 @@
  .shadow-3 { box-shadow: 2px 2px 4px 2px rgba( 0, 0, 0, .2 ); }
  .shadow-4 { box-shadow: 2px 2px 8px 0 rgba( 0, 0, 0, .2 ); }
  .shadow-5 { box-shadow: 4px 4px 8px 0 rgba( 0, 0, 0, .2 ); }
+ .shadow-6 { box-shadow: -10px 10px 5px #140d1d}
  /*
  
 		CODE
@@ -852,6 +853,10 @@
  .h12 { height: 12rem; }
  .h13 { height: 13rem; }
  .h14 { height: 14rem; }
+ .h15 { height: 15rem; }
+ .h16 { height: 16rem; }
+ .h17 { height: 17rem; }
+ .h18 { height: 18rem; }
  /* ===================== */
  /* Height Percentages - Based off of height of parent */
  .h-25 { height: 25%; }
@@ -1233,6 +1238,7 @@
  .bg-washed-green { background-color: #e8fdf5; }
  .bg-washed-yellow { background-color: #fffceb; }
  .bg-washed-red { background-color: #ffdfdf; }
+ .bg-brown { background-color: #964B00;}
  .bg-inherit { background-color: inherit; }
  /* 
 	 

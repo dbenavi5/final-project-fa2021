@@ -5,7 +5,7 @@ import { List, Range } from 'immutable';
 import React from 'react';
 
 // project imports
-import { Instrument, InstrumentProps } from '../Instrument2';
+import { Instrument, InstrumentProps } from '../Instruments';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Piano.

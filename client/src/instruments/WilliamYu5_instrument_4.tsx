@@ -5,7 +5,7 @@ import { List, Range } from 'immutable';
 import React from 'react';
 
 // project imports
-import { Instrument, InstrumentProps } from '../Instruments3';
+import { Instrument, InstrumentProps } from '../Instruments';
 import { Automatic16 } from '@carbon/icons-react';
 
 /** ------------------------------------------------------------------------ **
