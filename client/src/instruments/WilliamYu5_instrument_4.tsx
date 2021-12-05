@@ -2,11 +2,14 @@
 import * as Tone from 'tone';
 import classNames from 'classnames';
 import { List, Range } from 'immutable';
-import React from 'react';
 
 // project imports
+<<<<<<< HEAD
 import { Instrument, InstrumentProps } from '../Instruments';
 import { Automatic16 } from '@carbon/icons-react';
+=======
+import { Instrument, InstrumentProps } from '../Instruments3';
+>>>>>>> e2c862c088bb4736522f28ab620aa44085f803d0
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Ocarina.
