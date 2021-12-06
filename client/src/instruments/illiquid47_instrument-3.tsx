@@ -142,7 +142,7 @@ function Xylophone({ mono}: InstrumentProps): JSX.Element {
             const note = `${key.note}${octave}`;
             return (
               <XylophoneKey
-                key={octave} //react key
+                key={note} //react key
                 note={note}
                 mono={mono}
                 tunekey1={isTunekey1}
@@ -163,12 +163,12 @@ function Xylophone({ mono}: InstrumentProps): JSX.Element {
       <div>
         {Range(2, 3).map(octave =>
           bars.map(key => {
-            // const note = `${key.note}${octave}`;
+            // const note = `${key.note}`;
             const bar1 = key.name.indexOf('1') !== -1;
             const bar2 = key.name.indexOf('2') !== -1;
             return (
               <XylophoneBar
-                key={octave} //react key
+                key={key.name} //react key
                 bar1={bar1}
                 bar2={bar2}
                 octave={octave}
