@@ -30,4 +30,4 @@ workspace.code-workspace
 .env
 
 # sqlite database file
-app.db
+# app.db
