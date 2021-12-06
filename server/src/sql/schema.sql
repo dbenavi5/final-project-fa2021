@@ -19,4 +19,5 @@ VALUES 	(1, 'Ode to Joy (Dubstep Remix)', 'E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E
 		(3, 'Mission Impossible', 'G2, G2, Bb2, C3, G2, G2, F2, F#2, G2, G2, Bb2, C3, G2, G2, F2, F#2'),
 		(4, 'Yankee Doodle Remix', 'C4 C4 D4 E4 C4 E4 D4 G4 C4 C4 D4 E4 C4 B4 G4 C4 C4 D4 E4 F4 E4 D4 C4 B4 G4 A4 B4 C4 C4 A4 B4 A4 G4 A4 B4 C4 G4 A4 G4 F4 E4 G4 A4 B4 A4 G4 A4 B4 C4 A4 G4 C4 B4 D4 C4 C4'),
 		(5, 'Twinkle Twinkle Little Star', 'C4 C4 G4 G4 A4 A4 G4 F4 F4 E4 E4 D4 D4 C4 G4 G4 F4 F4 E4 E4 D4 G4 G4 F4 F4 E4 E4 D4 C4 C4 G4 G4 A4 A4 G4 F4 F4 E4 E4 D4 D4 C4'),
-		(6, 'Marry Had a Little Lamb', 'E4 D4 C4 D4 E4 E4 E4 D4 D4 D4 E4 E4 E4 E4 D4 C4 D4 E4 E4 E4 C4 D4 D4 E4 D4 C4');
+		(6, 'Marry Had a Little Lamb', 'E4 D4 C4 D4 E4 E4 E4 D4 D4 D4 E4 E4 E4 E4 D4 C4 D4 E4 E4 E4 C4 D4 D4 E4 D4 C4'),
+		(30, 'Super Mario', 'E4 E4 E4 C4 E4 G4 C4 G4 E4 A4 B4 B4 A4 G4 E4 G4 A4 F4 G4 E4 C4 D4 B4');
