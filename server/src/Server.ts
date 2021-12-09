@@ -2,9 +2,12 @@ import { Server, Socket } from 'socket.io';
 import http from 'http';
 import { MessageHandler } from './MessageHandler';
 import { GetSongsHandler } from './handlers/GetSongsHandler';
+// import dotenv from 'dotenv';
 
-const PORT = 3001;
-const VALID_ORIGINS = ['http://localhost:3000'];
+// dotenv.config();
+
+const PORT = process.env.PORT || 3001;
+const VALID_ORIGINS = process.env.VALID_ORIGINS;
 const PING_TIMEOUT_MS = 10000;
 const PING_INTERVAL_MS = 10000;
 const WS_PATH = '/ws';
@@ -29,7 +32,7 @@ function connectHandler(socket: Socket) {
 export async function initServer(): Promise<Server> {
    const httpServer = http.createServer();
 
-   httpServer.listen(PORT, 'localhost');
+   httpServer.listen(PORT);
 
    const server = new Server({
       path: WS_PATH,
