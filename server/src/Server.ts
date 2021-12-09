@@ -32,7 +32,9 @@ function connectHandler(socket: Socket) {
 export async function initServer(): Promise<Server> {
    const httpServer = http.createServer();
 
-   httpServer.listen(PORT);
+   httpServer.listen(PORT, () => {
+      console.log(`listening on port: ${PORT}`)
+   });
 
    const server = new Server({
       path: WS_PATH,
