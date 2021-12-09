@@ -2,9 +2,6 @@
    "name": "lambdavibe-server",
    "version": "1.0.0",
    "description": "CSC 600 musical application. Get ready to shred.",
-   "engines": {
-      "node": "16.4.10"
-   },
    "main": "index.js",
    "scripts": {
       "start": "nodemon index.ts"
