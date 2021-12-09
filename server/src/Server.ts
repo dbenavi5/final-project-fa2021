@@ -8,8 +8,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 const VALID_ORIGINS = process.env.VALID_ORIGINS;
-const PING_TIMEOUT_MS = 5000;
-const PING_INTERVAL_MS = 5000;
+const PING_TIMEOUT_MS = 10000;
+const PING_INTERVAL_MS = 10000;
 const WS_PATH = process.env.WS_PATH; //'/ws';
 
 // Add messages you'd like to support here
