@@ -29,7 +29,7 @@ export function GuitarSound({
   return (
     <div
       onMouseDown={() => plucky?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?
-      // onMouseUp={() => plucky?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      onMouseUp={() => plucky?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
       className='guitar'
     >
       <div className='strings'>

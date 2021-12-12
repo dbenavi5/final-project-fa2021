@@ -94,7 +94,7 @@ function Ocarina({ synth, setSynth }: InstrumentProps): JSX.Element {
       oldSynth.disconnect();
 
       return new Tone.Synth({
-        oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
+        oscillator: { type: newType} as Tone.OmniOscillatorOptions,
       }).toDestination();
     });
   };
@@ -140,7 +140,7 @@ function Ocarina({ synth, setSynth }: InstrumentProps): JSX.Element {
         {oscillators.map(o => (
           <OcarinaType
             key={o}
-            title={"Ocarina"}
+            title={o}
             onClick={() => setOscillator(o)}
             active={synth?.oscillator.type === o}
           />

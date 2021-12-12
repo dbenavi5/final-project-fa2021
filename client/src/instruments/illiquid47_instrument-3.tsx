@@ -111,14 +111,14 @@ export function XylophoneBar({
 
 function Xylophone({ mono}: InstrumentProps): JSX.Element {
   const keys = List([
-    { note: 'C', idx: 0.5, name: '1'},
-    { note: 'D', idx: 1.5, name: '2' }, 
-    { note: 'E', idx: 2.5, name: '3'},
-    { note: 'F', idx: 3.5, name: '4'},
-    { note: 'G', idx: 4.5, name: '5'},
-    { note: 'A', idx: 5.5, name: '6'},
-    { note: 'B', idx: 6.5, name: '7'},
-    { note: 'Bb', idx: 7.5, name: '8'},
+    { note: 'C4', idx: 0.5, name: '1'},
+    { note: 'D4', idx: 1.5, name: '2' }, 
+    { note: 'E4', idx: 2.5, name: '3'},
+    { note: 'F4', idx: 3.5, name: '4'},
+    { note: 'G4', idx: 4.5, name: '5'},
+    { note: 'A4', idx: 5.5, name: '6'},
+    { note: 'B4', idx: 6.5, name: '7'},
+    { note: 'B6', idx: 7.5, name: '8'},
   ]);
   const bars = List([
     { idx: 0, name: '1'},
@@ -139,7 +139,7 @@ function Xylophone({ mono}: InstrumentProps): JSX.Element {
             const isTunekey6 = key.name.indexOf('6') !== -1;
             const isTunekey7 = key.name.indexOf('7') !== -1;
             const isTunekey8 = key.name.indexOf('8') !== -1;
-            const note = `${key.note}${octave}`;
+            const note = `${key.note}`;
             return (
               <XylophoneKey
                 key={note} //react key

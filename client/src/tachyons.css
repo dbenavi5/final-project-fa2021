@@ -295,6 +295,7 @@
  .outline-0 { outline: 0; }
  .no-bg {background: none;}
  .no-border {border: none;}
+ .b4black {border: 4px solid black;}
  /*
  
 		 BORDERS
@@ -1241,6 +1242,8 @@
  .bg-washed-red { background-color: #ffdfdf; }
  .bg-brown { background-color: #964B00;}
  .bg-inherit { background-color: inherit; }
+ .bg-dark-brown {background-color: #a55c1b;}
+ .bg-img-linear-brown { background-image: linear-gradient(280deg,  #000000 10%,  #a55c1b 74%); }
  /* 
 	 
 		SKINS:PSEUDO
@@ -1520,6 +1523,7 @@
  .pl5 { padding-left: 4rem; }
  .pl6 { padding-left: 8rem; }
  .pl7 { padding-left: 16rem; }
+ .pl50 { padding-left: 50rem; }
  .pl70 { padding-left: 70rem; }
  .pr0 { padding-right: 0; }
  .pr1 { padding-right: .25rem; }

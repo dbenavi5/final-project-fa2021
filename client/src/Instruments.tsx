@@ -62,8 +62,20 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
   dispatch,
 }: InstrumentContainerProps) => {
   const InstrumentComponent = instrument.component;
+
+
+
   const [synth, setSynth] = useState(
     new Tone.Synth({
+      envelope: {
+        attack: 0.05,
+        attackCurve: "exponential",
+        decay: 0.2,
+        decayCurve: "exponential",
+        release: 1.5,
+        releaseCurve: "exponential",
+        sustain: 0.2
+      },
       oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
     }).toDestination(),
   );
@@ -111,7 +123,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
   const [membrane, setMembrane] = useState(
     new Tone.MembraneSynth({
       pitchDecay: 0.02,
-      octaves: 3,
+      octaves: 4,
       oscillator: { type: 'sine' } as Tone.OmniOscillatorOptions,
     }).toDestination(),
   );
@@ -143,13 +155,12 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
 
   const [pluck, setPluck] = useState(
     new Tone.PluckSynth({
-      attackNoise: 0,
-      dampening: 4000,
+      attackNoise: 20,
+      dampening: 7000,
       resonance: 0.7,
     }).toDestination(),
   );
-
-
+  
   const notes = state.get('notes');
 
   // useEffect for playlist song
@@ -170,7 +181,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
         if (value.idx === eachNote.length - 1) {
           dispatch(new DispatchAction('STOP_SONG'));
         }
-      }, noteObjs).start(0);
+      }, noteObjs).start();
 
       Tone.Transport.start();
 
