@@ -1,7 +1,7 @@
 import { io as newSocket, Socket as SocketIO } from 'socket.io-client';
 
-const SOCKET_URL = 'ws://localhost:3001';
-// const SOCKET_URL = 'ws://visual-noise-music-app.herokuapp.com';
+// const SOCKET_URL = 'ws://localhost:3001';
+const SOCKET_URL = 'ws://visual-noise-music-app.herokuapp.com';
 
 const SOCKET_OPTS = {
   transports: ['websocket'],

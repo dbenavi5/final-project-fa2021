@@ -2,9 +2,15 @@ import { Server, Socket } from 'socket.io';
 import http from 'http';
 import { MessageHandler } from './MessageHandler';
 import { GetSongsHandler } from './handlers/GetSongsHandler';
+import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
+
+const app = express();
 
 dotenv.config();
+
+app.use(cors());
 
 const PORT = process.env.PORT || 3001;
 const VALID_ORIGINS = process.env.VALID_ORIGINS;
