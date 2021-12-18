@@ -2,21 +2,21 @@ import { Server, Socket } from 'socket.io';
 import http from 'http';
 import { MessageHandler } from './MessageHandler';
 import { GetSongsHandler } from './handlers/GetSongsHandler';
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
+// import express from 'express';
+// import dotenv from 'dotenv';
+// import cors from 'cors';
 
-const app = express();
+// const app = express();
 
-dotenv.config();
+// dotenv.config();
 
-app.use(cors());
+// app.use(cors());
 
 const PORT = process.env.PORT || 3001;
-const VALID_ORIGINS = process.env.VALID_ORIGINS;
+const VALID_ORIGINS =  ['http://localhost:3000'];
 const PING_TIMEOUT_MS = 10000;
 const PING_INTERVAL_MS = 10000;
-const WS_PATH = process.env.WS_PATH; //'/ws';
+const WS_PATH = '/ws';
 
 // Add messages you'd like to support here
 export const validMessages: MessageHandler[] = [GetSongsHandler];
